@@ -40,7 +40,7 @@ public class EmpProfile
 	String upskillNeeds;
 	
 	@Column(name="ontacademy_training_certifications")
-	List<String> onTAcademyTrainingCertifications;
+	String onTAcademyTrainingCertifications;
 	
 	@Column(name="interested_to_contribute_in")
 	String interestedToContributeIn;
@@ -54,6 +54,15 @@ public class EmpProfile
 	@Column(name="next1to3years")
 	String next1to3Years;
 	
+	@Column
+	boolean olderThanOneDay;
+	
+	public boolean isOlderThanOneDay() {
+		return olderThanOneDay;
+	}
+	public void setOlderThanOneDay(boolean olderThanOneDay) {
+		this.olderThanOneDay = olderThanOneDay;
+	}
 	public String getSoeid() {
 		return soeid;
 	}
@@ -102,11 +111,10 @@ public class EmpProfile
 	public void setUpskillNeeds(String upskillNeeds) {
 		this.upskillNeeds = upskillNeeds;
 	}
-	
-	public List<String> getOnTAcademyTrainingCertifications() {
+	public String getOnTAcademyTrainingCertifications() {
 		return onTAcademyTrainingCertifications;
 	}
-	public void setOnTAcademyTrainingCertifications(List<String> onTAcademyTrainingCertifications) {
+	public void setOnTAcademyTrainingCertifications(String onTAcademyTrainingCertifications) {
 		this.onTAcademyTrainingCertifications = onTAcademyTrainingCertifications;
 	}
 	public String getInterestedToContributeIn() {
@@ -137,23 +145,27 @@ public class EmpProfile
 	public EmpProfile() {
 		super();
 	}
-	public EmpProfile(EmpProfile empProfile) {
-		// TODO Auto-generated constructor stub
-		this.soeid = empProfile.getSoeid();
-		this.fullName = empProfile.getFullName();
-		this.currentDept = empProfile.getCurrentDept();
-		this.currentRole = empProfile.getCurrentRole();
-		this.interestedToContributeIn = empProfile.getInterestedToContributeIn();
-		this.masteryOn = empProfile.getMasteryOn();
-		this.next1to3Years = empProfile.getNext1to3Years();
-		this.onTAcademyTrainingCertifications = empProfile.getOnTAcademyTrainingCertifications();
-		this.openToWork = empProfile.getOpenToWork();
-		this.otherAreasWillingToContribute = empProfile.getOtherAreasWillingToContribute();
-		this.otherSkills = empProfile.getOtherSkills();
-		this.selfIntro = empProfile.getSelfIntro();
-		this.upskillNeeds= empProfile.getUpskillNeeds();
+
+	public EmpProfile(String soeid, String fullName, String currentRole, String selfIntro, String currentDept,
+			String masteryOn, String otherSkills, String upskillNeeds, String onTAcademyTrainingCertifications,
+			String interestedToContributeIn, String otherAreasWillingToContribute, String openToWork,
+			String next1to3Years, boolean olderThanOneDay) {
+		super();
+		this.soeid = soeid;
+		this.fullName = fullName;
+		this.currentRole = currentRole;
+		this.selfIntro = selfIntro;
+		this.currentDept = currentDept;
+		this.masteryOn = masteryOn;
+		this.otherSkills = otherSkills;
+		this.upskillNeeds = upskillNeeds;
+		this.onTAcademyTrainingCertifications = onTAcademyTrainingCertifications;
+		this.interestedToContributeIn = interestedToContributeIn;
+		this.otherAreasWillingToContribute = otherAreasWillingToContribute;
+		this.openToWork = openToWork;
+		this.next1to3Years = next1to3Years;
+		this.olderThanOneDay = olderThanOneDay;
 	}
-	
 	@Override
 	public String toString() {
 		return "EmpProfile ["

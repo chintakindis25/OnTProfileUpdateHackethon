@@ -18,15 +18,20 @@ public class OnTTrainingDetails {
 	@Column
 	String durationInWeeks;
 	
+	@Column
+	boolean profileUpdateStatus;
+	
 	public OnTTrainingDetails() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public OnTTrainingDetails(TrainingRecordId key, String courseName, String durationInWeeks) {
+	public OnTTrainingDetails(TrainingRecordId key, String courseName, String durationInWeeks, boolean profileUpdateStatus) {
 		super();
 		this.record = key;
 		this.durationInWeeks = durationInWeeks;
+		this.profileUpdateStatus = profileUpdateStatus;
 	}
+	
 	
 	public TrainingRecordId getRecord() {
 		return record;
@@ -40,4 +45,17 @@ public class OnTTrainingDetails {
 	public void setDurationInWeeks(String durationInWeeks) {
 		this.durationInWeeks = durationInWeeks;
 	}
+	public boolean isProfileUpdateStatus() {
+		return profileUpdateStatus;
+	}
+	public void setProfileUpdateStatus(boolean profileUpdateStatus) {
+		this.profileUpdateStatus = profileUpdateStatus;
+	}
+	@Override
+	public String toString() {
+		return "OnTTrainingDetails [record=" + record + ", durationInWeeks=" + durationInWeeks
+				+ ", profileUpdateStatus=" + profileUpdateStatus + "]";
+	}
+	
+	
 }

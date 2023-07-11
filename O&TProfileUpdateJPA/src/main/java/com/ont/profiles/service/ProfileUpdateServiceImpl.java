@@ -21,7 +21,7 @@ public class ProfileUpdateServiceImpl implements ProfileUpdateService{
 	@Override
 	public boolean addProfile(EmpProfile empProfile) {
 		EmpProfile p = profileUpdateRepository.save(empProfile);
-		System.out.println("saved 1"+p.toString());
+		//System.out.println("saved 1"+p.toString());
 		if(p!=null)
 		{
 			return true;
@@ -32,7 +32,7 @@ public class ProfileUpdateServiceImpl implements ProfileUpdateService{
 	@Override
 	public boolean addProfileList(List<EmpProfile> empProfileList) {
 		List<EmpProfile> p = profileUpdateRepository.saveAll(empProfileList);
-		System.out.println("Saved All"+p.toString());
+	//	System.out.println("Saved All"+p.toString());
 		if(p!=null)
 		{
 			return true;
@@ -51,7 +51,20 @@ public class ProfileUpdateServiceImpl implements ProfileUpdateService{
 	public EmpProfile showProfileBySOEID(String soeid) {
 		EmpProfile empProfile;
 		empProfile=profileUpdateRepository.findBySOEID(soeid);
-		System.out.println(empProfile);
+	//	System.out.println(empProfile);
 		return empProfile;
+	}
+
+	@Override
+	public void updateOnTTrainingCertification(EmpProfile empProfile) {
+		// TODO Auto-generated method stub
+		//profileUpdateRepository.updateCourses(empProfile.getSoeid(),empProfile.getOnTAcademyTrainingCertifications());
+		profileUpdateRepository.save(empProfile);
+	}
+
+	@Override
+	public List<EmpProfile> returnAllOldProfiles() {
+		// TODO Auto-generated method stub
+		return profileUpdateRepository.findAllOldProfiles();
 	}
 }

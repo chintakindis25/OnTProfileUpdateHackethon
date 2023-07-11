@@ -10,5 +10,7 @@ public interface ProfileUpdateService {
 	boolean addProfileList(List<EmpProfile> empProfileList);
 	List<EmpProfile> showAllProfiles();
 	EmpProfile showProfileBySOEID(String soeid);
+	void updateOnTTrainingCertification(EmpProfile empProfile);
+	List<EmpProfile> returnAllOldProfiles();
 
 }

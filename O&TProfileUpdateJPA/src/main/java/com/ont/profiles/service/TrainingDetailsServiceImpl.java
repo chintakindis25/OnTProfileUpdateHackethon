@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ont.profiles.OnTTrainingDetails;
+import com.ont.profiles.TrackNewProfiles;
 import com.ont.profiles.repository.TrainingReportUpdateRepository;
 
 @Service
@@ -59,11 +60,29 @@ public class TrainingDetailsServiceImpl implements TrainingDetailsService {
 	}
 
 	@Override
+	public List<OnTTrainingDetails> showTrainingReportBySOEID_NewEntries(String soeid) {
+		// TODO Auto-generated method stub
+		List<OnTTrainingDetails> list = trainingReportUpdateRepository.showBySOEID_NewEntries(soeid, false);
+		return list;
+	}
+	@Override
 	public List<OnTTrainingDetails> showReportByCourse(String course) {
 		
 		List<OnTTrainingDetails> list = trainingReportUpdateRepository.showByTraining(course);
 		// TODO Auto-generated method stub
 		return list;
+	}
+
+	@Override
+	public void updateProfileUpdateStatus(OnTTrainingDetails ont) {
+		// TODO Auto-generated method stub
+		trainingReportUpdateRepository.save(ont);
+	}
+
+	@Override
+	public List<OnTTrainingDetails> showNewEntries() {
+		// TODO Auto-generated method stub
+		return trainingReportUpdateRepository.showNewEntries();
 	}
 	
 }

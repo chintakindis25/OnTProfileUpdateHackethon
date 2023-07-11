@@ -1,5 +1,6 @@
 package com.ont.profiles.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.web.client.HttpStatusCodeException;
 import com.ont.profiles.EmpProfile;
 import com.ont.profiles.responses.ProfileUpdateResponse;
 import com.ont.profiles.service.ProfileUpdateService;
+import com.ont.profiles.service.TrackNewProfilesService;
 
 @RestController
 @RequestMapping("/v1")
@@ -25,6 +27,9 @@ public class ProfileUpdateController {
 	@Autowired
 	ProfileUpdateService profileUpdateService;
 	
+	@Autowired
+	TrackNewProfilesService trackNewProfilesService;
+
 	//Profile Update (Add)
 	@RequestMapping(value="/addProfile", method=RequestMethod.POST)
 	public ResponseEntity<ProfileUpdateResponse> addProfile(@RequestBody EmpProfile empProfile) {
@@ -32,10 +37,17 @@ public class ProfileUpdateController {
 		ProfileUpdateResponse response = new ProfileUpdateResponse();
 		response.setEmpProfileList(new ArrayList<>());
 		response.setResponseMessage("");
+		empProfile.setOlderThanOneDay(false);
 		if(profileUpdateService.addProfile(empProfile))
 		{	//System.out.println("Emp Profile Created" + empProfile);
 			
 			//Add SOEID to temporary table for daily batch
+		//	trackNewProfilesService.writeToCSVWriter(empProfile);
+			List<EmpProfile> list = new ArrayList<>();
+			list.add(empProfile);
+			trackNewProfilesService.saveDetails(list);
+			
+			//trackNewProfilesService.saveDetails((empProfile));
 			response.getEmpProfileList().add(empProfile);
 			response.setResponseMessage("Employee Profile created.");
 			return new ResponseEntity(response,HttpStatus.OK);
@@ -55,10 +67,13 @@ public class ProfileUpdateController {
 		ProfileUpdateResponse response = new ProfileUpdateResponse();
 		response.setEmpProfileList(new ArrayList<>());
 		response.setResponseMessage("");
-		
+		for(EmpProfile empProfile:empProfileList)
+		{
+			empProfile.setOlderThanOneDay(false);
+		}
 		if(profileUpdateService.addProfileList(empProfileList))
 		{	
-
+			trackNewProfilesService.saveDetails(empProfileList);
 			response.setEmpProfileList(empProfileList);
 			response.setResponseMessage("Employee Profiles created.");
 			//System.out.println("Emp Profile Created" + empProfileList);

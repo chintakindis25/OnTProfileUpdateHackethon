@@ -62,41 +62,5 @@ public class AdhocJobRunner {
 			
 			}
 		}
-	}
-	
-//	public void print()
-//	{
-//		//System.out.println("Print Adhoc Job Runner");
-//		//newProfileslist = newProfilesService.returnAll();
-//		//empProfiles = profileUpdateService.returnAllOldProfiles();
-//	    
-//		for(EmpProfile empProfile:empProfiles)
-//	    {
-//	    	//EmpProfile empProfile = profileUpdateService.showProfileBySOEID(newProfile.getSOEID());
-//	    	if (empProfile!=null)
-//	    	{
-//	    		boolean firstCourse=true;
-//	    		List<OnTTrainingDetails> ontList = trainingDetailsService.showTrainingReportBySOEID(newProfile.getSOEID());
-//	    		for(OnTTrainingDetails ont:ontList)
-//	    		{   String updatedCourses = empProfile.getOnTAcademyTrainingCertifications();
-//	    			if(firstCourse==true)
-//	    			{
-//	    				updatedCourses = updatedCourses+(ont.getRecord().getCourseName());
-//	    				firstCourse=false;
-//	    			}else
-//	    			{
-//	    				updatedCourses = updatedCourses+(ont.getRecord().getCourseName());
-//	    			}
-//    				empProfile.setOnTAcademyTrainingCertifications(updatedCourses);
-//    				ont.setProfileUpdateStatus(true);
-//	    			trainingDetailsService.updateProfileUpdateStatus(ont);
-//	    		}
-//	   	     profileUpdateService.updateOnTTrainingCertification(empProfile);
-//	   	     newProfile.setFirstTimeUpdate(true);
-//	   	     newProfilesService.updateFirstTimeUpdateFlag(newProfile);
-//	    	}
-//	    }
-//
-//	}
-		
+	}	
 }
